@@ -18,10 +18,10 @@ export default function Header() {
           </Link>
           <nav className="hidden sm:flex space-x-4">
             <Link href="/about" className="text-white/90 hover:text-white">
-              About
+              Pricing
             </Link>
             <Link href="/contact" className="text-white/90 hover:text-white">
-              Contact
+              Sign Up
             </Link>
           </nav>
         </div>
