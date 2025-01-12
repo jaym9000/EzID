@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[#0a0a0a] dark:bg-[#000000] border-b border-black/10 dark:border-white/10 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-[#0a0a0a] border-b border-white/10 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center -my-4">
@@ -16,12 +16,18 @@ export default function Header() {
               priority
             />
           </Link>
-          <nav className="hidden sm:flex space-x-4">
-            <Link href="/about" className="text-white/90 hover:text-white">
+          <nav className="hidden sm:flex items-center space-x-6">
+            <Link 
+              href="/pricing" 
+              className="text-white/90 hover:text-white transition-colors"
+            >
               Pricing
             </Link>
-            <Link href="/contact" className="text-white/90 hover:text-white">
-              Sign Up
+            <Link 
+              href="/early-access" 
+              className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              Get Early Access
             </Link>
           </nav>
         </div>
