@@ -39,7 +39,7 @@ export default function EarlyAccess() {
           currency: "usd",
         }}
       >
-        <CheckoutPage />
+        <CheckoutPage amount={amount} />
       </Elements>
     </div>
   );
