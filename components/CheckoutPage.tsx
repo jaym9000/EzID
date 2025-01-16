@@ -28,35 +28,41 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       .then((data) => setClientSecret(data.clientSecret));
   }, [amount]);
 
-  //   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //     event.preventDefault();
-  //     setLoading(true);
-  //     if (!stripe || !elements) return;
-  //   };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoading(true);
+    if (!stripe || !elements) return;
 
-  //   const { error: submitError } = await elements.submit();
+    const { error: submitError } = await elements.submit();
 
-  //   if (submitError) {
-  //     setErrorMessage(submitError.message);
-  //     setLoading(false);
-  //     return;
-  //   }
+    if (submitError) {
+      setErrorMessage(submitError.message);
+      setLoading(false);
+      return;
+    }
 
-  //   const { error } = await stripe.confirmPayment({
-  //     elements,
-  //     clientSecret,
-  //     confirmParams: {
-  //       return_url: "http://localhost:3000/success",
-  //     },
-  //   });
+    const { error } = await stripe.confirmPayment({
+      elements,
+      clientSecret,
+      confirmParams: {
+        return_url: "http://localhost:3000/success",
+      },
+    });
+
+    if (error) {
+      setErrorMessage(error.message);
+      setLoading(false);
+    } else {
+      // Payment succeeded, handle success (e.g., redirect to success page)
+    }
+  };
 
   return (
-    <form /*onSubmit={handleSubmit} */ className="bg-white p-2 rounded-md">
+    <form onSubmit={handleSubmit} className="bg-white p-4 rounded-md">
       {clientSecret && <PaymentElement />}
-
-      {errorMessage && <div>{errorMessage}</div>}
-
+      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
       <button
+        type="submit"
         disabled={!stripe || loading}
         className="text-white w-full p-5 bg-black mt-2 rounded-md font-bold disabled:opacity-50 disabled:animate-pulse"
       >
